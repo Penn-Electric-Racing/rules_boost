@@ -145,8 +145,8 @@ boost_library(
         "libs/context/src/untested.cpp",
         "libs/context/src/continuation.cpp",
     ],
-    copts = select({
-        ":windows_x86_64": ["/DBOOST_CONTEXT_EXPORT="],
+    defines = select({
+        ":windows_x86_64": ["BOOST_CONTEXT_EXPORT"],
         "//conditions:default": [],
     }),
     visibility = ["//visibility:public"],
@@ -187,9 +187,9 @@ boost_library(
         "libs/fiber/examples/asio/round_robin.hpp",
         "libs/fiber/examples/asio/yield.hpp",
     ],
-    copts = select({
+    defines = select({
         ":windows_x86_64": [
-            "/D_WIN32_WINNT=0x0601",
+            "_WIN32_WINNT=0x0601",
         ],
         "//conditions:default": [],
     }),

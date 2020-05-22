@@ -329,7 +329,15 @@ boost_library(
         ],
         "//conditions:default": [],
     }),
-    linkopts = ["-lpthread"],
+    linkopts = select({
+        ":linux": [
+            "-lpthread",
+        ],
+        ":osx_x86_64": [
+            "-lpthread",
+        ],
+        "//conditions:default": [],
+    }),
     deps = [
         ":bind",
         ":date_time",
@@ -1903,6 +1911,12 @@ boost_library(
         ":tti",
         ":type_traits",
     ],
+    linkopts = select({
+        ":windows": [
+            "bcrypt.lib"
+        ],
+        "//conditions:default": [],
+    }),
 )
 
 boost_library(

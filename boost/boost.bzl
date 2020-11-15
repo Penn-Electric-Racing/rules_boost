@@ -25,7 +25,7 @@ default_copts = select({
     "//conditions:default": [],
 })
 
-default_defines = select({
+default_defines = ["BOOST_USE_VALGRIND"] + select({
     ":windows_x86_64": ["BOOST_ALL_NO_LIB"],  # Turn auto_link off in MSVC compiler
     "//conditions:default": [],
 })
